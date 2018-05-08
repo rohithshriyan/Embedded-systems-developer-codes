@@ -12,10 +12,10 @@ int disp_luk[17]={0x00fc0000,0x00600000,0x00da0000,0x00f20000,0x00660000,0x00b60
 
 int main()
 {
- ds1=0;
- ds2=0;
- ds3=0;
- ds4=0;
+ ds1='0';
+ ds2='0';
+ ds3='0';
+ ds4='0';
  VPBDIV=0X00;
  PINSEL0=0X00000000;
  PINSEL1=0X00000000;
@@ -23,9 +23,9 @@ int main()
 
  while(1)
  {
-  for(i=0;i<=1000;i++)
+  for(i=0;i<=100;i++)
   {
-   for(k=1;k<=1000;k++)
+   for(k=1;k<=100;k++)
    {
     display();
    }
@@ -37,50 +37,50 @@ int main()
  void display()
  {
   IO1DIR=0X00010000;
-  IO0SET=disp_luk[ds1];
+  IO0SET=disp_luk[ds1-'0'];
   delay(20);
-  IO0CLR=disp_luk[ds1];
+  IO0CLR=disp_luk[ds1-'0'];
 
   IO1DIR=0X00020000;
-  IO0SET=disp_luk[ds2];
+  IO0SET=disp_luk[ds2-'0'];
   delay(20);
-  IO0CLR=disp_luk[ds2];
+  IO0CLR=disp_luk[ds2-'0'];
 
   IO1DIR=0X00040000;
-  IO0SET=disp_luk[ds3];
+  IO0SET=disp_luk[ds3-'0'];
   delay(20);
-  IO0CLR=disp_luk[ds3];
+  IO0CLR=disp_luk[ds3-'0'];
 
   IO1DIR=0X00080000;
-  IO0SET=disp_luk[ds4];
+  IO0SET=disp_luk[ds4-'0'];
   delay(20);
-  IO0CLR=disp_luk[ds4];
+  IO0CLR=disp_luk[ds4-'0'];
  }
 
  void inc_d()
  {
   ds1++;
-  if(ds1>15)
+  if(ds1>'9')
   {
-   ds1=0;
+   ds1='0';
    ds2++;
-   if(ds2>15)
+   if(ds2>'9')
    {
-    ds1=0;
-	ds2=0;
+    ds1='0';
+	ds2='0';
 	ds3++;
-	if(ds3>15)
+	if(ds3>'9')
 	{
-	 ds1=0;
-	 ds2=0;
-	 ds3=0;
+	 ds1='0';
+	 ds2='0';
+	 ds3='0';
 	 ds4++;
-	 if(ds4>15)
+	 if(ds4>'9')
 	 {
-	  ds1=0;
-	  ds2=0;
-	  ds3=0;
-	  ds4=0;
+	  ds1='0';
+	  ds2='0';
+	  ds3='0';
+	  ds4='0';
 	  }
 	}
    }
